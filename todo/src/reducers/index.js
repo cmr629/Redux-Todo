@@ -6,16 +6,18 @@ const initialState = {todos:[]}
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
-    console.log(action);
-      return   { todos: [...state.todos, action.payload.todo]}
+      return   { todos: [...state.todos, action.payload]}
+
     case DEL_TODO:
-    console.log(action.todo)
-      return  {...state, todos: state.todos.filter((todo, i) => action.payload.index !== i)};
+      return  {...state, todos: state.todos.filter((todo, i) => action.payload !== i)};
+
     case COMPLETE_TODO:
       let newState = state;
-      newState.todos[action.payload.index].completed = !newState.todos[action.payload.index].completed ;
-      state = newState;
-      return state;
+      newState.todos[action.payload].completed = !newState.todos[action.payload].completed;
+
+      return {...state, todos: newState.todos};
+ 
+
     default:
       return state;
   }

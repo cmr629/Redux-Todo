@@ -4,21 +4,20 @@ import { del, complete } from '../actions';
 import './todo.css';
 
 class Todo extends React.Component{
-
+  
     doDeleted = (event) => {
         this.props.del(this.props.index);
     }
 
     doComplete = (event) => {
-       
         this.props.complete(this.props.index);
     }
-   
+
     render(){
- 
+        const completedClass = this.props.todo.completed ? 'todo-value completed' : 'todo-value';
         return(
             <div className='todo'>
-                <div className={this.props.completedClass}>
+                <div className={completedClass}>
                     {this.props.todo.value}
                 </div> 
 
@@ -32,7 +31,7 @@ class Todo extends React.Component{
 }
 const mapStateToProps = (state) => {
     return {
-        completed: state.completed,
+        state: state,
     };
 };
 

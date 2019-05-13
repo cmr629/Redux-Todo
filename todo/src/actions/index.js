@@ -5,20 +5,20 @@ export const COMPLETE_TODO = 'COMPLETE_TODO';
 export const add = (todo) => {
     return {
         type: ADD_TODO,
-        payload: {todo}
+        payload: todo
     }
 };
 
 export const del = (index) => {
     return {
         type: DEL_TODO,
-        payload: {index}
+        payload: index
     }
 };
 
 export const complete = (index) => {
     return {
         type: COMPLETE_TODO,
-        payload: {index}
+        payload: index
     }
 };

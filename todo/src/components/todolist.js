@@ -8,19 +8,24 @@ class TodoList extends React.Component {
         super(props);
         this.state= {inputValue: ''};
     }
-
+ 
     changeValue = (event) => {
-        
         this.setState({inputValue: event.target.value});
     }
 
     addTodo = (event) => {
         event.preventDefault();
-        const newTodo = {value: this.state.inputValue, completed: false};
         this.props.add({value: this.state.inputValue, completed: false});
         this.setState({inputValue: ''});
     }
+
+    renderToDo = () => {
+        
+        return (this.props.todos.map((todo, i) => { return (<Todo key={i} index={i} todo={todo} />) }));
+    }
+    
     render() {
+        console.log('asdfar');
         return (
 
             <div className='todoList'>
@@ -30,8 +35,7 @@ class TodoList extends React.Component {
                         <button onClick={this.addTodo}>Add</button>
                     </form>
                 </header>
-                {console.log(this.props)}
-                {this.props.todos.map((todo, i) => { return <Todo completedClass={todo.completed ? 'todo-value completed' : 'todo-value'} key={i} isCompleted={todo.completed} index={i} todo={todo} /> })}
+                {this.renderToDo()}
             </div>
         );
     }
